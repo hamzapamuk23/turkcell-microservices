@@ -9,6 +9,16 @@
             "projectName": "inventory-service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-FilterServiceApplication<filter-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.kodlamaio.filterservice.FilterServiceApplication",
+            "projectName": "filter-service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
