@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: discovery-server
+server:
+  port: 8761
+eureka:
+  client:
+    fetch-registry: false #kendisini kendisini Eureka sunucusuna kaydetmesini sağlar.
+    register-with-eureka: false #Eureka sunucusundan servis bilgilerini alıp almayacağını belirler
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka #Eureka sunucusuna bağlanmak için kullanılacak Eureka sunucu adresi
+  instance:
+    hostname: discovery-server
