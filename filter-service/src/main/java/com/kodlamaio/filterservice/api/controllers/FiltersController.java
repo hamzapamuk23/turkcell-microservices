@@ -31,7 +31,7 @@ public class FiltersController {
     }
 
     @GetMapping("/{id}")
-    public GetFilterResponse getById(@PathVariable UUID id) {
+    public GetFilterResponse getById(@PathVariable String id) {
         return service.getById(id);
     }
 }

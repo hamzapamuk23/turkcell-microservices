@@ -1,8 +1,8 @@
 package com.kodlamaio.inventoryservice.business.concretes;
 
 import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
-import com.kodlamaio.commonpackage.events.CarCreatedEvent;
-import com.kodlamaio.commonpackage.events.CarDeletedEvent;
+import com.kodlamaio.commonpackage.events.inventory.CarCreatedEvent;
+import com.kodlamaio.commonpackage.events.inventory.CarDeletedEvent;
 import com.kodlamaio.inventoryservice.business.abstracts.CarService;
 import com.kodlamaio.inventoryservice.business.dto.requests.create.CreateCarRequest;
 import com.kodlamaio.inventoryservice.business.dto.requests.update.UpdateCarRequest;
@@ -57,7 +57,7 @@ public class CarManager implements CarService {
         car.setState(State.Available);
         var createdCar = repository.save(car);
         //Aracının bilgilerini filter servise yolla filterdbye kaydet. Kafka kullanılıyor.
-       sendKafkaCarCreatedEvent(createdCar);
+        sendKafkaCarCreatedEvent(createdCar);
         var response = mapper.forResponse().map(car, CreateCarResponse.class);
 
         return response;
@@ -79,6 +79,17 @@ public class CarManager implements CarService {
         rules.checkIfCarExists(id);
         repository.deleteById(id);
         sendKafkaCarDeletedEvent(id);
+    }
+
+    @Override
+    public void checkIfCarAvailable(UUID id) {
+        rules.checkIfCarExists(id);
+        rules.checkCarAvailability(id);
+    }
+
+    @Override
+    public void changeStateByCarId(State state, UUID id) {
+        repository.changeStateByCarId(state,id);
     }
 
     private void sendKafkaCarCreatedEvent(Car createdCar){

@@ -31,6 +31,11 @@ public class CarsController {
         return service.getById(id);
     }
 
+    @GetMapping("/check-car-available/{id}")
+    public void checkIfCarAvailable(@PathVariable UUID id){
+        service.checkIfCarAvailable(id);
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateCarResponse add(@Valid @RequestBody CreateCarRequest request) {
