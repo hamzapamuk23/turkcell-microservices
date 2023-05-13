@@ -1,10 +1,22 @@
 spring:
+  application:
+    name: filter-service
   data:
     mongodb:
       database: filterdb-t2
       uri: mongodb://localhost:27017
-  application:
-    name: filter-service
+  kafka:
+    consumer:
+      auto-offset-reset: earliest #sıraya alınan brokerlar için ilk giren il çıkar demek.
+      bootstrap-servers: http://localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties: #yanlış bir veri geldiğinde kendisini korumayar alıyor. Bu ayar sayesinde herşeye güven dedik.
+        spring:
+          json:
+            trusted:
+              packages: "*"
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
 eureka:
   client:
     fetch-registry: true
