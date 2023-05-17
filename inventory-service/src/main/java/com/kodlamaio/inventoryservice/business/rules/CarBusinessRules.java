@@ -15,14 +15,13 @@ public class CarBusinessRules {
 
     public void checkIfCarExists(UUID id) {
         if (!repository.existsById(id)) {
-            // TODO: BusinessException
             throw new BusinessException("CAR_NOT_EXISTS");
         }
     }
 
-    public void checkCarAvailability(UUID id){
+    public void checkCarAvailability(UUID id) {
         var car = repository.findById(id).orElseThrow();
-        if(!car.getState().equals(State.Available)){
+        if (!car.getState().equals(State.Available)) {
             throw new BusinessException("CAR_NOT_AVAILABLE");
         }
     }

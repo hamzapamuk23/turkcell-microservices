@@ -14,7 +14,6 @@ public class ModelBusinessRules {
 
     public void checkIfModelExists(UUID id) {
         if (!repository.existsById(id)) {
-            // TODO: BusinessException
             throw new BusinessException("MODEL_NOT_EXISTS");
         }
     }

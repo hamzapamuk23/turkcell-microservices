@@ -14,7 +14,6 @@ public class BrandBusinessRules {
 
     public void checkIfBrandExists(UUID id) {
         if (!repository.existsById(id)) {
-            // TODO: BusinessException
             throw new BusinessException("BRAND_NOT_EXISTS");
         }
     }

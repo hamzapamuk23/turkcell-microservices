@@ -38,11 +38,6 @@ public class FilterManager implements FilterService {
     }
 
     @Override
-    public Filter getByCarId(UUID carId) {
-        return repository.findByCarId(carId);
-    }
-
-    @Override
     public void add(Filter filter) {
         repository.save(filter);
     }
@@ -50,6 +45,11 @@ public class FilterManager implements FilterService {
     @Override
     public void delete(String id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public void deleteByCarId(UUID carId) {
+        repository.deleteByCarId(carId);
     }
 
     @Override
@@ -63,7 +63,7 @@ public class FilterManager implements FilterService {
     }
 
     @Override
-    public void deleteByCarId(UUID carId) {
-        repository.deleteByCarId(carId);
+    public Filter getByCarId(UUID carId) {
+        return repository.findByCarId(carId);
     }
 }

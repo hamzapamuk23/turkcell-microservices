@@ -10,13 +10,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.UUID;
 
 public interface CarRepository extends JpaRepository<Car, UUID> {
-    /*
-    Repository'de eğer ki veriyi değiştirmek için bir query yazılacaksa, veri değişikliği sırasında bir hata olduğu takdirde kaydı koruması için aşşağıdaki
-     @Modifying ve @Transactional anatasyonları kullanılır.
-    */
-
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Car set state = :state WHERE id = :id")
+    @Query(value = "update Car set state =:state where id =:id")
     void changeStateByCarId(State state, UUID id);
 }

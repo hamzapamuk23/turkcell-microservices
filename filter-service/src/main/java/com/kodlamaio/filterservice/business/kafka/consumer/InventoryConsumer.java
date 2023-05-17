@@ -1,9 +1,9 @@
 package com.kodlamaio.filterservice.business.kafka.consumer;
 
-import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
 import com.kodlamaio.commonpackage.events.inventory.BrandDeletedEvent;
 import com.kodlamaio.commonpackage.events.inventory.CarCreatedEvent;
 import com.kodlamaio.commonpackage.events.inventory.CarDeletedEvent;
+import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
 import com.kodlamaio.filterservice.business.abstracts.FilterService;
 import com.kodlamaio.filterservice.entities.Filter;
 import lombok.RequiredArgsConstructor;
@@ -18,15 +18,14 @@ public class InventoryConsumer {
     private final FilterService service;
     private final ModelMapperService mapper;
 
-    @KafkaListener( // consume edilecek eventin topics bilgilerini vermemiz lazımki hangi producer i consumes edebilmesini bilmesini lazım.
+    @KafkaListener(
             topics = "car-created",
-            groupId = "filter-car-create" // unique olmak zorunda.
+            groupId = "car-create"
     )
-    public void consumeCreate(CarCreatedEvent event){
+    public void consume(CarCreatedEvent event) {
         var filter = mapper.forRequest().map(event, Filter.class);
         service.add(filter);
         log.info("Car created event consumed {}", event);
-
     }
 
     @KafkaListener(
