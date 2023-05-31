@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-
   kafka:
     container_name: kafka-t2
     image: bashj79/kafka-kraft
@@ -9,8 +8,8 @@ services:
       - "9092:9092"
     volumes:
       - kafka_data:/opt/kafka/kafka-logs
-    #environment: başka bir makinede çalışıyorsa oraya istek atmak istediğimiz zaman kullanıyoruz.
-      #KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://ip_adress:9092
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
 
   mongodb:
     container_name: turkcell2-filterdb
@@ -18,8 +17,34 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db/
+      - mongodb_data:/data/db
+
+  maintenancedb:
+    container_name: maintenancedb-t2
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_TCP_PORT=3306
+      - VIRTUAL_PORT=3306
+    volumes:
+      - maintenancedb_data:/data/db
+
+  paymentdb:
+    container_name: paymentdb-t2
+    image: mysql
+    ports:
+      - "3307:3307"
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345
+      - MYSQL_TCP_PORT=3307
+      - VIRTUAL_PORT=3307
+    volumes:
+      - paymentdb_data:/data/db
 
 volumes:
   kafka_data:
   mongodb_data:
+  maintenancedb_data:
+  paymentdb_data:
