@@ -1,6 +1,6 @@
 package com.kodlamaio.rentalservice.business.dto.requests;
 
-import com.kodlamaio.commonpackage.utils.dto.GetCardInfo;
+import com.kodlamaio.commonpackage.utils.dto.responses.GetCardInfo;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

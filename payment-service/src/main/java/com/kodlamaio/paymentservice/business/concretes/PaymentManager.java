@@ -1,7 +1,8 @@
 package com.kodlamaio.paymentservice.business.concretes;
 
-import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
-import com.kodlamaio.commonpackage.utils.dto.CreateRentalPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.responses.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.requests.CreateRentalPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.responses.GetPaymentCardHolderResponse;
 import com.kodlamaio.commonpackage.utils.exceptions.BusinessException;
 import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
 import com.kodlamaio.paymentservice.business.abstacts.PaymentService;
@@ -82,6 +83,13 @@ public class PaymentManager implements PaymentService {
         processPaymentTransaction(request, response);
 
         return response;
+    }
+
+    @Override
+    public GetPaymentCardHolderResponse getCardHolder(UUID id) {
+        rules.checkIfPaymentExists(id);
+        Payment payment = repository.findById(id).orElseThrow();
+        return mapper.forResponse().map(payment, GetPaymentCardHolderResponse.class);
     }
 
     private void processPaymentTransaction(CreateRentalPaymentRequest request, ClientResponse response) {

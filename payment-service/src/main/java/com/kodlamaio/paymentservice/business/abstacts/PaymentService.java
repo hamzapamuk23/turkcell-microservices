@@ -1,8 +1,9 @@
 package com.kodlamaio.paymentservice.business.abstacts;
 
-import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
-import com.kodlamaio.commonpackage.utils.dto.CreateRentalPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.responses.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.requests.CreateRentalPaymentRequest;
 import com.kodlamaio.paymentservice.business.dto.requests.CreatePaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.responses.GetPaymentCardHolderResponse;
 import com.kodlamaio.paymentservice.business.dto.requests.UpdatePaymentRequest;
 import com.kodlamaio.paymentservice.business.dto.responses.CreatePaymentResponse;
 import com.kodlamaio.paymentservice.business.dto.responses.GetAllPaymentsResponse;
@@ -19,4 +20,6 @@ public interface PaymentService {
     UpdatePaymentResponse update(UUID id, UpdatePaymentRequest request);
     void delete(UUID id);
     ClientResponse processPayment(CreateRentalPaymentRequest request);
+    GetPaymentCardHolderResponse getCardHolder(UUID id);
+
 }

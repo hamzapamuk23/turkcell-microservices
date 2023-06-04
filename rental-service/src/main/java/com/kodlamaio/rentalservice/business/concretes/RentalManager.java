@@ -2,7 +2,7 @@ package com.kodlamaio.rentalservice.business.concretes;
 
 import com.kodlamaio.commonpackage.events.rental.RentalCreatedEvent;
 import com.kodlamaio.commonpackage.events.rental.RentalDeletedEvent;
-import com.kodlamaio.commonpackage.utils.dto.CreateRentalPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.requests.CreateRentalPaymentRequest;
 import com.kodlamaio.commonpackage.utils.kafka.producer.KafkaProducer;
 import com.kodlamaio.commonpackage.utils.mappers.ModelMapperService;
 import com.kodlamaio.rentalservice.business.abstracts.RentalService;

@@ -1,4 +1,4 @@
-package com.kodlamaio.commonpackage.utils.dto;
+package com.kodlamaio.commonpackage.utils.dto.requests;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
