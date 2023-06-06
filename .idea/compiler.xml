@@ -12,7 +12,6 @@
         <module name="inventory-service" />
         <module name="maintenance-service" />
         <module name="payment-service" />
-        <module name="common-package" />
         <module name="invoice-service" />
         <module name="api-gateway" />
         <module name="rental-service" />
@@ -22,6 +21,7 @@
     <bytecodeTargetLevel>
       <module name="api-gateway" target="17" />
       <module name="common-package" target="17" />
+      <module name="common-package-t2" target="17" />
       <module name="config-server" target="17" />
       <module name="discovery-server" target="17" />
       <module name="filter-service" target="17" />
@@ -36,6 +36,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="api-gateway" options="-parameters" />
       <module name="common-package" options="-parameters" />
+      <module name="common-package-t2" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="filter-service" options="-parameters" />
